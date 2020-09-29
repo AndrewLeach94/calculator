@@ -9,6 +9,6 @@ https://andrewleach94.github.io/calculator/
 Using this calculator is fairly self-explanatory. You will be able to compute any calculations to your liking using the same method you would with any real life calculator.
 
 ##### Checklist
+- [x] Create basic UI (9/26/2020)
 - [ ] Write scripts
-- [ ] Create basic UI
 - [ ] Design final UI
