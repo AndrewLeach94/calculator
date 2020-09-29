@@ -8,7 +8,8 @@
  divide = (a, b) => {
      // Check for divide by zero error
      if (b == 0) {
-         return alert("You can't divide by zero");
+        // // bug fix - set answer to empty string so it doesn't display as undefined
+        return answer;
      }
 
      else {
@@ -22,10 +23,6 @@
  resetAllValues = () => {currentValueFirst = [0]; currentValueSecond = []};
  //declare the answer variables
  let answer = "";
-//  let sum = "";
-//  let difference;
-//  let product;
-//  let quotient;
  //declare boolean to test which value array to send numbers to
  let isOperatorActive = false;
 
@@ -54,6 +51,18 @@ function updateCurrentValueSecond() {
    displayText.textContent = currentValueDisplay;
    return currentValueDisplay;
 } 
+
+// declare the hard reset function - resets everything to default value
+function hardReset() {
+    answer = "";
+    currentValueFirst = [0];
+    currentValueSecond = [];
+    isOperatorActive = false;  
+    additionActive = false;
+    subtractionActive = false;
+    multiplicationActive = false;
+    divisionActive = false;    
+}
 
 
 // Build the display
@@ -462,11 +471,14 @@ equalsKey.addEventListener("click", () => {
     if (divisionActive == true) {
         if (answer != "" && isNaN(answer) == false) {answer = divide(answer, valueSecondNumber())};
         if (answer == "") {answer = divide(valueFirstNumber(), valueSecondNumber())};
-        currentValueDisplay = answer;
-        updateDisplay();
+        if (answer != "") {currentValueDisplay = answer; updateDisplay();}
+        
+        // display play a message if user tried divided by zero and force a reset
+        if (answer == "") {currentValueDisplay = "Divide by zero error"; displayText.textContent = currentValueDisplay; hardReset();}
+    }
         resetAllValues();
         divisionActive = false;
-    }
+    
 
 } )
 
