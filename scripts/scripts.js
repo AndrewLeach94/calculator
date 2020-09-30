@@ -210,7 +210,20 @@ function hardReset() {
      }
  });
  
- const clearKey = document.querySelector("#clear");
+ const decimalKey = document.querySelector("#decimal");
+ decimalKey.addEventListener("click", () => {
+     // checks which value array to push numbers to
+     if (isOperatorActive == false) {
+        currentValueFirst.push(".");
+        updateCurrentValueFirst();    
+     }
+     else {
+         currentValueSecond.push(".");
+         updateCurrentValueSecond();
+     }
+ });
+ 
+    const clearKey = document.querySelector("#clear");
  clearKey.addEventListener("click", () => {
      hardReset()
      displayText.textContent = 0;
@@ -469,46 +482,47 @@ divisionKey.addEventListener("click", () => {
 
 const equalsKey = document.querySelector("#equals");
 equalsKey.addEventListener("click", () => {
-    // need to convert the array values to numbers so they can plugged into the arithmatic function
-    if (additionActive == true) {
-        if (answer != "" && isNaN(answer) == false) {answer = add(answer, valueSecondNumber())};
-        if (answer == "") {answer = add(valueFirstNumber(), valueSecondNumber())};
-        currentValueDisplay = answer;
-        updateDisplay();
-        resetAllValues();
-        additionActive = false;
-    }
+    // check to make sure there are two numbers to be computed - otherwise do nothing
+    if (currentValueFirst.length > 1 && currentValueSecond.length > 0) {
+        // need to convert the array values to numbers so they can plugged into the arithmatic function
+        if (additionActive == true) {
+            if (answer != "" && isNaN(answer) == false) {answer = add(answer, valueSecondNumber())};
+            if (answer == "") {answer = add(valueFirstNumber(), valueSecondNumber())};
+            currentValueDisplay = answer;
+            updateDisplay();
+            resetAllValues();
+            additionActive = false;
+        }
 
-    if (subtractionActive == true) {
-        if (answer != "" && isNaN(answer) == false) {answer = subtract(answer, valueSecondNumber())};
-        if (answer == "") {answer = subtract(valueFirstNumber(), valueSecondNumber())};
-        currentValueDisplay = answer;
-        updateDisplay();
-        resetAllValues();
-        subtractionActive = false;
-    }
+        if (subtractionActive == true) {
+            if (answer != "" && isNaN(answer) == false) {answer = subtract(answer, valueSecondNumber())};
+            if (answer == "") {answer = subtract(valueFirstNumber(), valueSecondNumber())};
+            currentValueDisplay = answer;
+            updateDisplay();
+            resetAllValues();
+            subtractionActive = false;
+        }
 
-    if (multiplicationActive == true) {
-        if (answer != "" && isNaN(answer) == false) {answer = multiply(answer, valueSecondNumber())};
-        if (answer == "") {answer = multiply(valueFirstNumber(), valueSecondNumber())};
-        currentValueDisplay = answer;
-        updateDisplay();
-        resetAllValues();
-        multiplicationActive = false;
-    }
+        if (multiplicationActive == true) {
+            if (answer != "" && isNaN(answer) == false) {answer = multiply(answer, valueSecondNumber())};
+            if (answer == "") {answer = multiply(valueFirstNumber(), valueSecondNumber())};
+            currentValueDisplay = answer;
+            updateDisplay();
+            resetAllValues();
+            multiplicationActive = false;
+        }
 
-    if (divisionActive == true) {
-        if (answer != "" && isNaN(answer) == false) {answer = divide(answer, valueSecondNumber())};
-        if (answer == "") {answer = divide(valueFirstNumber(), valueSecondNumber())};
-        if (answer != "") {currentValueDisplay = answer; updateDisplay();}
-        
-        // display play a message if user tried divided by zero and force a reset
-        if (answer == "") {currentValueDisplay = "Divide by zero error"; displayText.textContent = currentValueDisplay; hardReset();}
+        if (divisionActive == true) {
+            if (answer != "" && isNaN(answer) == false) {answer = divide(answer, valueSecondNumber())};
+            if (answer == "") {answer = divide(valueFirstNumber(), valueSecondNumber())};
+            if (answer != "") {currentValueDisplay = answer; updateDisplay();}
+            
+            // display play a message if user tried divided by zero and force a reset
+            if (answer == "") {currentValueDisplay = "Divide by zero error"; displayText.textContent = currentValueDisplay; hardReset();}
     }
         resetAllValues();
         divisionActive = false;
-    
-
+}
 } )
 
  
