@@ -1,9 +1,34 @@
 // ARITHMATIC FUNCTIONS - Defining the basic functions with ES6 syntax
- add = (a, b) =>  a + b;
+ add = (a, b) =>  {
+     // round the answer to 2 decimal places if it's a decimal - return just the answer if not
+     if (Number.isInteger(a + b) == true) {
+        return a + b
+     }
+     else {
+        return (a + b).toFixed(2)
+     }
+};
 
- subtract = (a, b) => a - b;
+ subtract = (a, b) => {
+    // round the answer to 2 decimal places if it's a decimal - return just the answer if not
+    if (Number.isInteger(a - b) == true) {
+        return a - b;
+    }
+    else {
+        return (a - b).toFixed(2);
+    }
+ }
 
- multiply = (a, b) => a * b;
+ multiply = (a, b) => {
+    // round the answer to 2 decimal places if it's a decimal - return just the answer if not
+    if (Number.isInteger(a * b) == true) {
+        return a * b
+    }
+    else {
+        return (a * b).toFixed(2)
+    }
+    
+ }
 
  divide = (a, b) => {
      // Check for divide by zero error
@@ -14,7 +39,12 @@
      }
 
      else {
-        return  a / b;
+         if(Number.isInteger(a / b) == true) {
+             return a / b;
+         }
+         else {
+            return  (a / b).toFixed(2);
+         }
      }
  }
  
@@ -31,8 +61,8 @@
  currentValueDisplay = currentValueFirst.toString().replace(/,/g, "");
 
  // define functions to convert the value arrays to a number
- valueFirstNumber = () => parseInt(currentValueFirst.join(""));
- valueSecondNumber = () => parseInt(currentValueSecond.join(""));
+ valueFirstNumber = () => parseFloat(currentValueFirst.join(""));
+ valueSecondNumber = () => parseFloat(currentValueSecond.join(""));
  
 
  // Define update value functions on keypress
@@ -212,15 +242,23 @@ function hardReset() {
  
  const decimalKey = document.querySelector("#decimal");
  decimalKey.addEventListener("click", () => {
-     // checks which value array to push numbers to
-     if (isOperatorActive == false) {
-        currentValueFirst.push(".");
-        updateCurrentValueFirst();    
-     }
-     else {
-         currentValueSecond.push(".");
-         updateCurrentValueSecond();
-     }
+     // check if there is already a decimal in the array - do not add more if there is one already
+     let isDecimal = (element) => element == ".";
+
+     if (currentValueFirst.some(isDecimal) == false) {
+        // checks which value array to push numbers to
+        if (isOperatorActive == false) {
+            currentValueFirst.push(".");
+            updateCurrentValueFirst();    
+         }
+    }
+    if (currentValueSecond.some(isDecimal) == false) {
+        if (isOperatorActive == true) {
+            currentValueSecond.push(".");
+            updateCurrentValueSecond();
+        }
+    }
+     
  });
  
     const clearKey = document.querySelector("#clear");
@@ -483,7 +521,7 @@ divisionKey.addEventListener("click", () => {
 const equalsKey = document.querySelector("#equals");
 equalsKey.addEventListener("click", () => {
     // check to make sure there are two numbers to be computed - otherwise do nothing
-    if (currentValueFirst.length > 1 && currentValueSecond.length > 0) {
+    if (currentValueSecond.length > 0) {
         // need to convert the array values to numbers so they can plugged into the arithmatic function
         if (additionActive == true) {
             if (answer != "" && isNaN(answer) == false) {answer = add(answer, valueSecondNumber())};
