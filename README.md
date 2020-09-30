@@ -6,9 +6,11 @@ As a user, I want to have access to a calculator in a browser tab.
 https://andrewleach94.github.io/calculator/
 
 #### Overview
-Using this calculator is fairly self-explanatory. You will be able to compute any calculations to your liking using the same method you would with any real life calculator.
+Using this calculator is fairly self-explanatory. You can compute any calculations to your liking using the same methods you would with any real life calculator.
+
+This is built entirely with vanilla JS
 
 ##### Checklist
 - [x] Create basic UI (9/26/2020)
-- [ ] Write scripts
+- [x] Write scripts (9/30/2020)
 - [ ] Design final UI

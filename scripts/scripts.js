@@ -261,8 +261,8 @@ function hardReset() {
      
  });
  
-    const clearKey = document.querySelector("#clear");
- clearKey.addEventListener("click", () => {
+const clearKey = document.querySelector("#clear");
+clearKey.addEventListener("click", () => {
      hardReset()
      displayText.textContent = 0;
     });
@@ -272,6 +272,10 @@ backSpace.addEventListener("click", () => {
     // if the current value is empty, do nothing 
     if (currentValueDisplay == 0) {
         return
+    }
+    else if (answer != ""){
+        hardReset();
+        displayText.textContent = 0;
     }
     // test which data array the user is working in to remove the last element
     else if (isOperatorActive == false) {
