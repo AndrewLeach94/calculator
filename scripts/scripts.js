@@ -8,7 +8,8 @@
  divide = (a, b) => {
      // Check for divide by zero error
      if (b == 0) {
-        // // bug fix - set answer to empty string so it doesn't display as undefined
+        // // bug fix - set answer to empty string
+        answer = "";
         return answer;
      }
 
@@ -208,7 +209,35 @@ function hardReset() {
          updateCurrentValueSecond();
      }
  });
+ 
+ const clearKey = document.querySelector("#clear");
+ clearKey.addEventListener("click", () => {
+     hardReset()
+     displayText.textContent = 0;
+    });
 
+const backSpace = document.querySelector("#backspace");
+backSpace.addEventListener("click", () => {
+    // if the current value is empty, do nothing 
+    if (currentValueDisplay == 0) {
+        return
+    }
+    // test which data array the user is working in to remove the last element
+    else if (isOperatorActive == false) {
+        // do not backspace if there is only one digit
+        if (currentValueFirst.length == 1) {return}
+        currentValueFirst.pop();
+        updateCurrentValueFirst();
+    }
+
+    else {
+        // do not backspace if there is only one digit
+        if(currentValueSecond.length == 1) {return}
+        currentValueSecond.pop();
+        updateCurrentValueSecond();
+    }
+});
+   
 
 
 
