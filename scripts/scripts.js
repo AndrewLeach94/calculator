@@ -589,8 +589,12 @@ equalsKey.addEventListener("click", () => {
             // display play a message if user tried divided by zero and force a reset
             if (answer == "" || isNaN(answer) === true) {currentValueDisplay = "Divide by zero error"; displayText.textContent = currentValueDisplay; hardReset();}
     }
+        additionKey.removeAttribute("style");
+        subtractionKey.removeAttribute("style");
+        multiplicationKey.removeAttribute("style");
+        divisionKey.removeAttribute("style");
 
-        hardReset();
+        resetAllValues();
         divisionActive = false;
 }
 } )
