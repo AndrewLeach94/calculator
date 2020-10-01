@@ -13,4 +13,4 @@ This is built entirely with vanilla JS
 ##### Checklist
 - [x] Create basic UI (9/26/2020)
 - [x] Write scripts (9/30/2020)
-- [ ] Design final UI
+- [x] Design final UI (9/30/2020)
