@@ -1,7 +1,45 @@
+html {
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+
+body {
+    background: rgb(67,112,142);
+    background: radial-gradient(circle, rgba(67,112,142,1) 0%, rgba(34,87,122,1) 100%); 
+}
+
 header {
     display: flex;
+    flex-flow: column nowrap;
     align-items: center;
-    justify-content: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+	color: #88cec4;
+}
+
+
+p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2.3rem;
+}
+
+h6 {
+    font-size: 1rem;
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.fab {
+    margin-right: 5px;
+    color: black;
 }
 
 main {
@@ -11,25 +49,39 @@ main {
     justify-content: center;
 }
 
+#calc_container {
+    background: rgb(56,163,165);
+    background: linear-gradient(215deg, rgba(56,163,165,1) 0%, rgba(87,204,153,1) 80%); 
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px #0000004f;
+}
+
 #display {
-    border: 1px solid black;
     text-align: right;
     text-align: right;
     grid-column: 1 / 5;
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
+    padding-right: 10px;
 }
 
 #calc_container {
     display: grid;
-    width: 500px;
-    height: 550px;
+    width: 600px;
+    height: 650px;
 }
 
 button {
-    /* width: 75px;
-    height: 50px; */
+    background: #ffffff5e;
+    border: 1px solid #8080801a;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.7rem;
+    color: white;
+}
+
+.calc_operator {
+    color: #808080d4;
 }
 
 /* Specific Calculator Buttons */
@@ -76,4 +128,12 @@ button {
     grid-column-start: 3;
     grid-row: 2;
     grid-column: 3 / 5;
+}
+
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
 }

@@ -92,7 +92,12 @@ function hardReset() {
     additionActive = false;
     subtractionActive = false;
     multiplicationActive = false;
-    divisionActive = false;    
+    divisionActive = false;
+    
+    additionKey.removeAttribute("style");
+    divisionKey.removeAttribute("style");
+    multiplicationKey.removeAttribute("style");
+    subtractionKey.removeAttribute("style");
 }
 
 
@@ -357,6 +362,12 @@ additionKey.addEventListener("click", () => {
     subtractionActive = false;
     multiplicationActive = false;
     divisionActive = false;
+    
+    // Change color
+    additionKey.style.backgroundColor = "#C7F9CC";
+    subtractionKey.removeAttribute("style");
+    multiplicationKey.removeAttribute("style");
+    divisionKey.removeAttribute("style");
 })
 
 const subtractionKey = document.querySelector("#minus");
@@ -410,6 +421,13 @@ subtractionKey.addEventListener("click", () => {
     additionActive = false;
     multiplicationActive = false;
     divisionActive = false;
+
+    // change color 
+    additionKey.removeAttribute("style");
+    subtractionKey.style.backgroundColor = "#C7F9CC";
+    multiplicationKey.removeAttribute("style");
+    divisionKey.removeAttribute("style");
+
 })
 
 const multiplicationKey = document.querySelector("#multiply");
@@ -463,6 +481,12 @@ multiplicationKey.addEventListener("click", () => {
     additionActive = false;
     subtractionnActive = false;
     divisionActive = false;
+
+    additionKey.removeAttribute("style");
+    multiplicationKey.style.backgroundColor = "#C7F9CC";
+    subtractionKey.removeAttribute("style");
+    divisionKey.removeAttribute("style");
+
 })
 
 const divisionKey = document.querySelector("#divide");
@@ -514,12 +538,15 @@ divisionKey.addEventListener("click", () => {
     divisionActive = true;
 
     additionActive = false;
-    subtractionnActive = false;
+    subtractionActive = false;
     multiplicationActive = false;
+
+    additionKey.removeAttribute("style");
+    divisionKey.style.backgroundColor = "#C7F9CC";
+    multiplicationKey.removeAttribute("style");
+    subtractionKey.removeAttribute("style");
+
 })
-
-
-
 
 
 const equalsKey = document.querySelector("#equals");
@@ -560,13 +587,10 @@ equalsKey.addEventListener("click", () => {
             if (answer != "") {currentValueDisplay = answer; updateDisplay();}
             
             // display play a message if user tried divided by zero and force a reset
-            if (answer == "") {currentValueDisplay = "Divide by zero error"; displayText.textContent = currentValueDisplay; hardReset();}
+            if (answer == "" || isNaN(answer) === true) {currentValueDisplay = "Divide by zero error"; displayText.textContent = currentValueDisplay; hardReset();}
     }
-        resetAllValues();
+
+        hardReset();
         divisionActive = false;
 }
 } )
-
- 
-
-
